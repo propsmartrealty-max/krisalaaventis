@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://krisala.com/aventis-2-25-bhk-3-25-bhk-flats-in-tathawade-pune/sitemap.xml
