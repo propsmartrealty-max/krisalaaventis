@@ -124,12 +124,28 @@
   // Modal Trigger Logic
   document.querySelectorAll('.btn-modal, .cta-pill, .btn-primary, .btn-secondary, .nav-links a, .ribbon-cta').forEach(btn => {
     btn.addEventListener('click', (e) => {
-      const text = btn.innerText || btn.textContent;
-      const href = btn.getAttribute('href');
+      const text = (btn.innerText || btn.textContent).toLowerCase();
+      const modalHeader = modal?.querySelector('.modal-header h3');
+      const modalDesc   = modal?.querySelector('.modal-header p');
       
       // Target specific high-intent phrases
-      if (text.toLowerCase().includes('enquire') || text.toLowerCase().includes('visit') || text.toLowerCase().includes('price') || text.toLowerCase().includes('access')) {
+      if (text.includes('enquire') || text.includes('visit') || text.includes('price') || text.includes('access') || text.includes('roi') || text.includes('calc')) {
         e.preventDefault();
+        
+        // Contextual Header Update
+        if (modalHeader) {
+          if (text.includes('roi') || text.includes('growth')) {
+            modalHeader.innerHTML = 'Request <span class="gold">ROI Analysis</span>';
+            modalDesc.innerText   = 'Unlock the complete market whitepaper and capital appreciation projection.';
+          } else if (text.includes('price')) {
+            modalHeader.innerHTML = 'Get <span class="gold">Price List</span>';
+            modalDesc.innerText   = 'Receive the latest inventory status and pre-launch pricing directly on WhatsApp.';
+          } else {
+            modalHeader.innerHTML = 'Unlock <span class="gold">Privilege Access</span>';
+            modalDesc.innerText   = 'Enter your details to receive the official brochure and priority site visit slots.';
+          }
+        }
+
         modal.classList.add('open');
         trackEvent('Engagement', 'Modal Opened', text.trim());
       }

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tathawade Property Growth Predictor & ROI Calculator | Krisala Aventis Intelligence</title>
+  <meta name="description" content="Use the Krisala Aventis Market Predictor to calculate capital appreciation and rental yield in Tathawade. Predictive real estate data for 2026-2030 based on West Pune infrastructure growth.">
+  <meta name="keywords" content="tathawade property price predictor, real estate investment calculator pune, capital appreciation tathawade, rental yield hinjewadi wakad, krisala aventis roi calculator">
+  <link rel="canonical" href="https://krisalaventis.in/tathawade-market-growth-calculator">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .calculator-container {
+      background: var(--clr-onyx-light);
+      padding: 3rem;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.05);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .input-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .calc-input-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+    .calc-input-group input {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 1rem;
+      border-radius: 10px;
+      color: white;
+      font-family: inherit;
+    }
+    .results-display {
+      background: var(--clr-obsidian);
+      padding: 2rem;
+      border-radius: 15px;
+      text-align: center;
+      border: 1px solid var(--clr-gold-dim);
+    }
+    .result-item { margin-bottom: 1rem; }
+    .result-val { font-size: 2rem; font-weight: 700; color: var(--clr-gold); display: block; }
+    .result-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Tathawade Market Growth Predictor",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
+  }
+  </script>
+</head>
+<body>
+  <nav class="pill-navbar" id="mainNav">
+    <div class="nav-container">
+      <a href="index.html" class="logo">KRISALA <span>AVENTIS</span></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="tathawade-real-estate-investment-roi.html">Economy</a>
+        <a href="#contact" class="cta-pill">Book Site Visit</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero silo-hero">
+    <div class="hero-bg">
+      <img src="assets/images/hero.png" alt="Real Estate Market Predictor Tool">
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">🧠 Predictive Intelligence v1.0</div>
+      <h1>The <span class="gold">Predictor.</span></h1>
+      <p class="hero-desc">Data-driven projections for your future wealth. Enter your investment horizon to see the historical and projected appreciation trend for premium assets in the Tathawade-Wakad corridor.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="calculator-container">
+        <div class="input-grid">
+          <div class="calc-input-group">
+            <label>Initial Investment (₹ Lakhs)</label>
+            <input type="number" id="investment" value="75" min="50">
+          </div>
+          <div class="calc-input-group">
+            <label>Horizon (Years)</label>
+            <input type="number" id="years" value="5" min="1" max="10">
+          </div>
+        </div>
+        <div class="results-display">
+          <div class="result-item">
+            <span class="result-label">Projected Valuation (2030)</span>
+            <span class="result-val" id="valuation">₹ 1.22 Cr</span>
+          </div>
+          <div class="result-item">
+            <span class="result-label">Est. Rental Yield (Annual)</span>
+            <span class="result-val" id="rental">₹ 4.5 Lakhs</span>
+          </div>
+          <p style="font-size: 0.7rem; opacity: 0.5;">*Projections are based on 9% CAGR and 4% yield benchmarks in West Pune. Actual results may vary based on market dynamics.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section enquiry-section">
+    <div class="container center">
+      <div class="glass-form-container" style="max-width: 600px; margin: 0 auto;">
+        <h3>Request Detailed Growth Logic</h3>
+        <p>Get the whitepaper on Hinjewadi Phase 1 expansion and its impact on Tathawade price points.</p>
+        <form id="sovereign-form" class="sovereign-form-logic">
+          <div class="form-group">
+            <input type="text" name="name" placeholder="Full Name" required>
+          </div>
+          <div class="form-group">
+            <input type="tel" name="phone" placeholder="Mobile Number" pattern="[0-9]{10}" required>
+          </div>
+          <select name="config" required>
+            <option value="Calculator Query" selected>Growth Analysis (Requested)</option>
+            <option value="Site Visit">Book Site Visit</option>
+          </select>
+          <button type="submit" class="submit-btn"><span class="btn-text">Unlock Complete Data Set →</span></button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script src="assets/js/script.js"></script>
+  <script>
+    const invInput = document.getElementById('investment');
+    const yrsInput = document.getElementById('years');
+    const valDisp  = document.getElementById('valuation');
+    const rentDisp = document.getElementById('rental');
+
+    function updateCalculations() {
+      const p = parseFloat(invInput.value) || 0;
+      const t = parseFloat(yrsInput.value) || 0;
+      
+      // Calculation Logic: 9% Compound Interest (Appreciation) + 4% Flat Rental Yield
+      const appreciationRate = 0.09;
+      const futureVal = p * Math.pow((1 + appreciationRate), t);
+      const annualRental = p * 0.04;
+
+      valDisp.innerText = futureVal >= 100 
+        ? `₹ ${(futureVal/100).toFixed(2)} Cr` 
+        : `₹ ${futureVal.toFixed(1)} Lakhs`;
+      
+      rentDisp.innerText = `₹ ${annualRental.toFixed(1)} Lakhs`;
+    }
+
+    [invInput, yrsInput].forEach(el => el.addEventListener('input', updateCalculations));
+    updateCalculations();
+  </script>
+</body>
+</html>
