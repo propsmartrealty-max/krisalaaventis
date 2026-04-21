@@ -185,17 +185,24 @@
       // Persist to local "Sovereign Vault"
       persistLead(data);
 
-      // --- Lead Relay (Email Notification via Formspree Repo) ---
-      // Endpoint linked to propsmartrealty@gmail.com
-      fetch('https://formspree.io/f/xvgzrqba', {
+      // --- Lead Relay (Email Notification via Web3Forms) ---
+      // Destination: propsmartrealty@gmail.com
+      const leadData = {
+        access_key: 'b28972bc-8e15-4fe5-86b7-82b12ee0e82b',
+        subject: `New Lead: ${data.name} - Krisala Aventis`,
+        from_name: 'Krisala Aventis Live Portal',
+        ...data
+      };
+
+      fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
+        body: JSON.stringify(leadData)
       }).then(response => {
         if (response.ok) {
-          console.log('[Krisala Aventis] Lead relayed to Email ✅');
+          console.log('[Krisala Aventis] Lead relayed to Web3Forms successfully ✅');
         }
-      }).catch(err => console.warn('[Krisala Aventis] Email relay failed:', err));
+      }).catch(err => console.warn('[Krisala Aventis] Lead relay failed:', err));
 
       // --- Success Execution ---
       setTimeout(() => {
