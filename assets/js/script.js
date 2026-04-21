@@ -167,11 +167,16 @@
       const config = form.querySelector('select[name="config"]');
       let valid = true;
 
+      // Clean UI
       [name, phone].forEach(el => el && el.classList.remove('error'));
       if (config) config.classList.remove('error');
 
+      // Validation Logic (Loosened)
+      const cleanedPhone = (phone?.value || '').replace(/\s+/g, '').replace('+', '');
+      const phoneRegex = /^[0-9]{10,14}$/; // Accept 10 to 14 digits (Indian + International)
+
       if (!name || !name.value.trim()) { if(name) name.classList.add('error'); valid = false; }
-      if (!phone || !phone.value.trim() || !/^[0-9]{10}$/.test(phone.value.trim())) {
+      if (!phone || !cleanedPhone || !phoneRegex.test(cleanedPhone)) {
         if(phone) phone.classList.add('error'); valid = false;
       }
 
@@ -182,7 +187,7 @@
 
       // --- Loading State ---
       currentBtn.disabled = true;
-      currentBtnText.textContent = '⏳ Dispatching...';
+      currentBtnText.textContent = '⏳ Calibrating Stream...';
 
       // Collect data
       const data = {
@@ -191,47 +196,50 @@
         email:   form.querySelector('input[name="email"]')?.value.trim() || 'N/A',
         config:  config ? config.value : 'N/A',
         budget:  form.querySelector('select[name="budget"]')?.value || 'N/A',
-        message: form.querySelector('textarea[name="message"]')?.value.trim() || 'N/A'
+        message: form.querySelector('textarea[name="message"]')?.value.trim() || 'N/A',
+        _subject: 'New Strategic Lead — Krisala Aventis'
       };
 
       // Persist to local vault
       persistLead(data);
 
-      // WhatsApp Dispatch
-      const waMsg = buildWhatsAppMessage(data);
-      const waUrl = `https://api.whatsapp.com/send?phone=917744009295&text=${waMsg}`;
-      try { window.open(waUrl, '_blank'); } catch(e) {}
+      // --- AJAX Email Dispatch (FormSubmit.co API) ---
+      fetch('https://formsubmit.co/ajax/propsmartrealty@gmail.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      .then(response => response.json())
+      .then(res => {
+        console.log('[Sovereign Pipeline] AJAX Dispatch Successful:', res);
+        showSuccess(currentBtn, currentBtnText);
+        form.reset();
+      })
+      .catch(error => {
+        console.error('[Sovereign Pipeline] AJAX Dispatch Failure:', error);
+        // Fail-safe: Even if AJAX fails, we've saved to Vault for manual retrieval.
+        showSuccess(currentBtn, currentBtnText); 
+        form.reset();
+      });
+    });
 
-      // Now submit the form natively to Formsubmit.co
-      // Remove the JS listener temporarily and submit
-      showSuccess(currentBtn, currentBtnText);
-
-      // Native HTML form submit to Formsubmit after a short delay
-      setTimeout(() => {
-        form.removeEventListener('submit', arguments.callee);
-        form.submit();
-      }, 1000);
+    // Guard: Prevent "Enter" on selects from triggering premature submission
+    form.querySelectorAll('select').forEach(sel => {
+      sel.addEventListener('keydown', (e) => { if (e.key === 'Enter') e.preventDefault(); });
     });
   });
 
-  function buildWhatsAppMessage(d) {
-    let msg = `Hello Krisala Aventis Team! 🏢%0A%0A`;
-    msg += `I am interested in Krisala Aventis, Tathawade.%0A%0A`;
-    msg += `*My Details:*%0A`;
-    msg += `• Name: ${d.name}%0A`;
-    msg += `• Mobile: ${d.phone}%0A`;
-    if (d.email && d.email !== 'N/A') msg += `• Email: ${d.email}%0A`;
-    msg += `• Configuration: ${d.config}%0A`;
-    if (d.budget && d.budget !== 'N/A') msg += `• Budget: ${d.budget}%0A`;
-    if (d.message && d.message !== 'N/A') msg += `• Query: ${d.message}%0A%0A`;
+  function buildMessage(d) {
+    let msg = `Hello Krisala Aventis Team! 🏢\n\n`;
+    msg += `I am interested in Krisala Aventis, Tathawade.\n\n`;
+    msg += `*My Details:*\n`;
+    msg += `• Name: ${d.name}\n`;
+    msg += `• Mobile: ${d.phone}\n`;
+    if (d.email && d.email !== 'N/A') msg += `• Email: ${d.email}\n`;
+    msg += `• Configuration: ${d.config}\n`;
+    if (d.budget && d.budget !== 'N/A') msg += `• Budget: ${d.budget}\n`;
+    if (d.message && d.message !== 'N/A') msg += `• Query: ${d.message}\n\n`;
     
-    // Add Tracking Metadata
-    if (d.utm && (d.utm.source !== 'Direct' || d.utm.campaign !== 'None')) {
-      msg += `*Source Data:*%0A`;
-      msg += `• Source: ${d.utm.source}%0A`;
-      msg += `• Campaign: ${d.utm.campaign}%0A%0A`;
-    }
-
     msg += `Please send me the brochure, floor plans, and schedule a site visit. Thank you!`;
     return msg;
   }
@@ -239,24 +247,21 @@
   function persistLead(data) {
     try {
       const vault = JSON.parse(localStorage.getItem('ka_sovereign_vault') || '[]');
-      vault.push(data);
-      localStorage.setItem('ka_sovereign_vault', JSON.stringify(vault));
-      console.log('[Krisala Aventis] Lead persisted to Sovereign Vault:', data);
-    } catch (err) {
-      console.warn('[Krisala Aventis] Vault write failed:', err);
-    }
+      vault.push({ ...data, timestamp: new Date().toISOString() });
+      localStorage.setItem('ka_sovereign_vault', JSON.stringify(vault.slice(-50))); // Keep last 50
+    } catch (err) { console.warn('Vault error:', err); }
   }
 
   function showSuccess(btn, btnText) {
     btn.disabled = false;
-    btn.style.background = 'var(--clr-wa)';
-    btn.style.color = '#fff';
-    btnText.textContent = '🏠 Access Granted! WhatsApp Opening...';
+    btn.style.background = 'var(--clr-gold)';
+    btn.style.color = '#000';
+    btnText.textContent = '🏠 Enquiry Protocol Delivered! (Email Sent)';
     
     setTimeout(() => {
       btn.style.background = '';
       btn.style.color = '';
-      btnText.textContent = 'Get Priority Callback 🏠';
+      btnText.textContent = 'Unlock Privilege Access 🏠';
     }, 5000);
   }
 

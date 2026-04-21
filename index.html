@@ -1117,18 +1117,14 @@
         <div class="enquiry-right reveal">
           <div class="glass-form-container">
             <h3>Book a Free Site Visit</h3>
-            <form id="sovereign-form" class="sovereign-form-logic" action="https://formsubmit.co/propsmartrealty@gmail.com" method="POST" novalidate>
-              <input type="hidden" name="_subject" value="New Lead — Krisala Aventis">
-              <input type="hidden" name="_captcha" value="false">
-              <input type="hidden" name="_template" value="table">
-              <input type="hidden" name="_next" value="https://krisalaventis.in/?submitted=true">
+            <form id="sovereign-form" class="sovereign-form-logic" novalidate>
               <div class="form-group">
                 <label for="name">Full Name</label>
                 <input type="text" id="name" name="name" placeholder="Your Name" required autocomplete="name">
               </div>
               <div class="form-group">
                 <label for="phone">Mobile Number</label>
-                <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" required pattern="[0-9]{10}" autocomplete="tel">
+                <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" required autocomplete="tel">
               </div>
               <div class="form-group">
                 <label for="email">Email Address</label>
@@ -1229,11 +1225,7 @@
         <h3>Unlock <span class="gold">Privilege Access</span></h3>
         <p>Enter your details to receive the official brochure, cost sheets, and priority site visit slots.</p>
       </div>
-      <form id="modal-form" class="sovereign-form-logic" action="https://formsubmit.co/propsmartrealty@gmail.com" method="POST">
-        <input type="hidden" name="_subject" value="New Lead — Krisala Aventis (Modal)">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_next" value="https://krisalaventis.in/?submitted=true">
+      <form id="modal-form" class="sovereign-form-logic">
         <div class="form-grid">
           <div class="form-group">
             <label for="m-name">Full Name *</label>
@@ -1243,7 +1235,7 @@
             <label for="m-phone">Mobile Number *</label>
             <div class="phone-input">
               <span>+91</span>
-              <input type="tel" id="m-phone" name="phone" placeholder="98765 43210" pattern="[0-9]{10}" required>
+              <input type="tel" id="m-phone" name="phone" placeholder="98765 43210" required>
             </div>
           </div>
         </div>
