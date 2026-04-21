@@ -122,14 +122,13 @@
   const closeModal = document.getElementById('closeModal');
   
   // Modal Trigger Logic
-  document.querySelectorAll('.btn-modal, .cta-pill, .btn-primary, .btn-secondary').forEach(btn => {
-    // Only target buttons that aren't navigation links
-    if (btn.tagName === 'A' && btn.getAttribute('href')?.startsWith('#')) return;
-    
+  document.querySelectorAll('.btn-modal, .cta-pill, .btn-primary, .btn-secondary, .nav-links a, .ribbon-cta').forEach(btn => {
     btn.addEventListener('click', (e) => {
       const text = btn.innerText || btn.textContent;
-      // If it's a "Download" or "Enquire" button, show modal instead of jumping
-      if (text.toLowerCase().includes('enquire') || text.toLowerCase().includes('visit') || text.toLowerCase().includes('brochure') || text.toLowerCase().includes('price')) {
+      const href = btn.getAttribute('href');
+      
+      // Target specific high-intent phrases
+      if (text.toLowerCase().includes('enquire') || text.toLowerCase().includes('visit') || text.toLowerCase().includes('price') || text.toLowerCase().includes('access')) {
         e.preventDefault();
         modal.classList.add('open');
         trackEvent('Engagement', 'Modal Opened', text.trim());
