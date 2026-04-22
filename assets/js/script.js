@@ -206,6 +206,21 @@
         return;
       }
 
+      // --- Security & Rate Limit Check ---
+      const hp = form.querySelector('input[name="contact_me"]');
+      if (hp && hp.checked) {
+        console.warn('[Sovereign Guard] Bot detected.');
+        return;
+      }
+
+      const now = Date.now();
+      const lastSub = localStorage.getItem('last_sub_time');
+      if (lastSub && (now - lastSub < 45000)) { 
+        alert('🔒 Security Protocol: Please wait a few moments between submissions.');
+        return;
+      }
+      localStorage.setItem('last_sub_time', now);
+
       // --- Loading State ---
       currentBtn.disabled = true;
       const originalText = currentBtnText.textContent;

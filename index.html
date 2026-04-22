@@ -228,6 +228,9 @@
     }
   }
   </script>
+
+  <link rel="preconnect" href="https://api.web3forms.com">
+  <link rel="preconnect" href="https://api.qrserver.com">
 </head>
 <body>
   
@@ -1234,6 +1237,7 @@
           <div class="glass-form-container">
             <h3 id="formTitle">Book a Free Site Visit</h3>
             <form id="sovereign-form" class="sovereign-form-logic" novalidate>
+              <input type="checkbox" name="contact_me" style="display:none !important" tabindex="-1" autocomplete="off">
               <div class="form-group">
                 <label for="name">Full Name</label>
                 <input type="text" id="name" name="name" placeholder="Your Name" required autocomplete="name">
@@ -1419,6 +1423,7 @@
         <p>Enter your details to receive the official brochure, cost sheets, and priority site visit slots.</p>
       </div>
       <form id="modal-form" class="sovereign-form-logic">
+              <input type="checkbox" name="contact_me" style="display:none !important" tabindex="-1" autocomplete="off">
         <div class="form-grid">
           <div class="form-group">
             <label for="m-name">Full Name *</label>

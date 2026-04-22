@@ -87,6 +87,9 @@
     ]
   }
   </script>
+
+  <link rel="preconnect" href="https://api.web3forms.com">
+  <link rel="preconnect" href="https://api.qrserver.com">
 </head>
 <body>
   <nav class="pill-navbar">
@@ -158,6 +161,7 @@
         <h3 id="formTitle">Global Investor Inquiry</h3>
         <p>Request a virtual site tour and customized ROI projection report.</p>
         <form id="sovereign-form" class="sovereign-form-logic">
+              <input type="checkbox" name="contact_me" style="display:none !important" tabindex="-1" autocomplete="off">
           <div class="form-group">
             <input type="text" name="name" placeholder="Your Full Name" required>
           </div>

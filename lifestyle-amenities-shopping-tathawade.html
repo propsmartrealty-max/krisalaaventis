@@ -164,6 +164,9 @@
     ]
   }
   </script>
+
+  <link rel="preconnect" href="https://api.web3forms.com">
+  <link rel="preconnect" href="https://api.qrserver.com">
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
@@ -237,6 +240,7 @@
         <h3>Get Your Lifestyle Guide</h3>
         <p>Receive a curated map of the top 20 shopping, dining, and medical hubs around Krisala Aventis.</p>
         <form id="sovereign-form" class="sovereign-form-logic">
+              <input type="checkbox" name="contact_me" style="display:none !important" tabindex="-1" autocomplete="off">
           <div class="form-group">
             <input type="text" name="name" placeholder="Full Name" required>
           </div>
@@ -262,6 +266,7 @@
         <p>Enter your details to receive the official brochure and priority site visit slots.</p>
       </div>
       <form id="modal-form" class="sovereign-form-logic">
+              <input type="checkbox" name="contact_me" style="display:none !important" tabindex="-1" autocomplete="off">
         <div class="form-grid">
           <div class="form-group">
             <label>Full Name *</label>
