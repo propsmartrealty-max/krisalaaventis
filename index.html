@@ -992,7 +992,7 @@
         </div>
         <div class="enquiry-right reveal">
           <div class="glass-form-container">
-            <h3>Book a Free Site Visit</h3>
+            <h3 id="formTitle">Book a Free Site Visit</h3>
             <form id="sovereign-form" class="sovereign-form-logic" novalidate>
               <div class="form-group">
                 <label for="name">Full Name</label>
@@ -1035,6 +1035,24 @@
               </button>
               <p class="disclaimer">I authorise Krisala Legacy and its representatives to Call, SMS, Email or WhatsApp me about its projects. This consent overrides any DNC/NDNC registration.</p>
             </form>
+
+            <!-- PRIORITY PASS (Hidden by default) -->
+            <div id="priorityPassContainer" class="priority-pass-container">
+              <div class="priority-pass">
+                <div class="pass-header">Official Priority Access</div>
+                <div class="pass-name" id="pp-name">Guest</div>
+                <div class="pass-id" id="pp-id">KA-000000</div>
+                <div class="pass-qr">
+                  <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=KrisalaAventis" alt="QR Code">
+                </div>
+                <div class="pass-benefit">
+                  Valid for <strong>VIP Site Tour</strong> & <br>Exclusive <strong>Spot-Booking Discount</strong>.
+                </div>
+                <div class="pass-footer">
+                  Please show this pass at the Krisala Aventis Site Office, Tathawade.
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

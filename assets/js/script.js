@@ -249,14 +249,14 @@
       })
       .then(res => {
         console.log('[Sovereign Pipeline] Relay Successful:', res);
-        showSuccess(currentBtn, currentBtnText, originalText);
+        showSuccess(currentBtn, currentBtnText, originalText, form, data.name, data.phone);
         form.reset();
       })
       .catch(error => {
         clearTimeout(timeoutId);
         console.error('[Sovereign Pipeline] Relay Failure:', error);
         // Fail-safe: Even if Relay fails, we've saved to Vault for manual recovery.
-        showSuccess(currentBtn, currentBtnText, originalText); 
+        showSuccess(currentBtn, currentBtnText, originalText, form, data.name, data.phone); 
         form.reset();
       });
     });
@@ -295,20 +295,48 @@
     } catch (err) { console.warn('Vault error:', err); }
   }
 
-  function showSuccess(btn, btnTextEl, originalText) {
+  function showSuccess(btn, btnTextEl, originalText, form, nameVal, phoneVal) {
     btn.disabled = false;
-    const originalBg = btn.style.background;
-    const originalColor = btn.style.color;
-    
-    btn.style.background = 'var(--clr-gold)';
-    btn.style.color = '#000';
-    btnTextEl.textContent = '🏠 Enquiry Protocol Delivered!';
-    
-    setTimeout(() => {
-      btn.style.background = originalBg;
-      btn.style.color = originalColor;
-      btnTextEl.textContent = originalText;
-    }, 5000);
+    const formTitle = document.getElementById('formTitle');
+    const ppContainer = document.getElementById('priorityPassContainer');
+    const ppName = document.getElementById('pp-name');
+    const ppId = document.getElementById('pp-id');
+    const qrImg = ppContainer?.querySelector('.pass-qr img');
+
+    if (form && ppContainer && ppName && ppId) {
+      // Hide form and title
+      form.style.display = 'none';
+      if (formTitle) formTitle.style.display = 'none';
+
+      // Set Pass Data
+      ppName.innerText = nameVal || 'Valued Guest';
+      const passId = 'KA-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+      ppId.innerText = passId;
+
+      if (qrImg) {
+        qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=PassID:${passId}|Phone:${phoneVal}`;
+      }
+
+      // Show Pass
+      ppContainer.style.display = 'block';
+      ppContainer.style.animation = 'fadeIn 0.8s ease forwards';
+      
+      trackEvent('Conversion', 'Priority Pass Generated', passId);
+    } else {
+      // Fallback if elements not present (e.g. on silo pages)
+      const originalBg = btn.style.background;
+      const originalColor = btn.style.color;
+      
+      btn.style.background = 'var(--clr-gold)';
+      btn.style.color = '#000';
+      btnTextEl.textContent = '🏠 Enquiry Protocol Delivered!';
+      
+      setTimeout(() => {
+        btn.style.background = originalBg;
+        btn.style.color = originalColor;
+        btnTextEl.textContent = originalText;
+      }, 5000);
+    }
   }
 
   function shake(el) {
