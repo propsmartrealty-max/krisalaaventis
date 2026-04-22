@@ -14,5 +14,13 @@
     { "source": "/public-transport-connectivity-tathawade-pune.html", "destination": "/public-transport-connectivity-tathawade-pune", "permanent": true },
     { "source": "/tathawade-market-growth-calculator.html", "destination": "/tathawade-market-growth-calculator", "permanent": true },
     { "source": "/tathawade-real-estate-glossary.html", "destination": "/tathawade-real-estate-glossary", "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "index, follow" }
+      ]
+    }
   ]
 }
