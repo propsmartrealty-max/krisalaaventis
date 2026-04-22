@@ -56,7 +56,7 @@ async function pushToIndex() {
       await new Promise(resolve => setTimeout(resolve, 500));
     }
     
-    print('\x1b[32m✨ All high-intent URLs pushed to Google Search Console.\x1b[0m');
+    console.log('\x1b[32m✨ All high-intent URLs pushed to Google Search Console.\x1b[0m');
   } catch (err) {
     console.error('\x1b[31m⚠️ Fatal API Error:\x1b[0m', err.message);
   }

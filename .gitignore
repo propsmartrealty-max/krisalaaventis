@@ -1,1 +1,4 @@
 indexing-automation/service-account.json
+service-account.json
+**/service-account.json
+*.json
