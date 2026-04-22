@@ -203,7 +203,7 @@
       // --- Loading State ---
       currentBtn.disabled = true;
       const originalText = currentBtnText.textContent;
-      currentBtnText.textContent = '⏳ Calibrating Stream...';
+      currentBtnText.textContent = '⏳ DISPATCHING...';
 
       // Collect data
       const data = {
@@ -220,12 +220,17 @@
       persistLead(data);
 
       // --- AJAX Email Dispatch (Formspree — Production Verified) ---
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 8000); // 8s timeout
+
       fetch('https://formspree.io/f/xvgzrqba', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
+        signal: controller.signal
       })
       .then(response => {
+        clearTimeout(timeoutId);
         if (response.ok) return response.json();
         throw new Error('Network response was not ok.');
       })
@@ -235,8 +240,10 @@
         form.reset();
       })
       .catch(error => {
+        clearTimeout(timeoutId);
         console.error('[Sovereign Pipeline] AJAX Dispatch Failure:', error);
         // Fail-safe: Even if AJAX fails, we've saved to Vault for manual recovery.
+        // We still show success to the user to avoid frustration, as we have their data in Vault.
         showSuccess(currentBtn, currentBtnText, originalText); 
         form.reset();
       });
@@ -247,6 +254,26 @@
       sel.addEventListener('keydown', (e) => { if (e.key === 'Enter') e.preventDefault(); });
     });
   });
+
+  /* =============================================
+     7b. AUTO-MODAL ON FIRST LOAD
+     ============================================= */
+  if (modal) {
+    const hasSeenModal = sessionStorage.getItem('ka_modal_viewed');
+    if (!hasSeenModal) {
+      setTimeout(() => {
+        const isAnyModalOpen = document.querySelector('.modal-overlay.open');
+        if (!isAnyModalOpen) {
+          modal.classList.add('open');
+          const modalHeader = modal.querySelector('.modal-header h3');
+          const modalDesc   = modal.querySelector('.modal-header p');
+          if (modalHeader) modalHeader.innerHTML = 'Unlock <span class="gold">Exclusive Offers</span>';
+          if (modalDesc) modalDesc.innerText = 'Register now to receive current inventory status and pre-launch pricing.';
+          sessionStorage.setItem('ka_modal_viewed', 'true');
+        }
+      }, 3000); // 3 seconds delay
+    }
+  }
 
   function persistLead(data) {
     try {
