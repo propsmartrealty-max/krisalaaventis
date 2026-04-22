@@ -167,6 +167,22 @@
       });
     }
   </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Krisala Aventis Official Portal",
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "xpath": [
+        "/html/head/title",
+        "/html/head/meta[@name='description']/@content"
+      ]
+    },
+    "url": "https://krisalaventis.in/"
+  }
+  </script>
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
@@ -207,7 +223,7 @@
   <!-- ======== HERO ======== -->
   <section id="hero" class="hero">
     <div class="hero-bg">
-      <img src="assets/images/hero.png" alt="Krisala Aventis Tathawade — The Premier Krisala Pune New Launch in the Wakad Corridor">
+      <img src="assets/images/hero.png" alt="Krisala Aventis Tathawade — The Premier Krisala Pune New Launch in the Wakad Corridor"> fetchpriority="high"
       <div class="hero-overlay"></div>
     </div>
     <div class="hero-content">
@@ -1228,7 +1244,7 @@
                 <div class="pass-name" id="pp-name">Guest</div>
                 <div class="pass-id" id="pp-id">KA-000000</div>
                 <div class="pass-qr">
-                  <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=KrisalaAventis" alt="QR Code">
+                  <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=KrisalaAventis" alt="QR Code" loading="lazy">
                 </div>
                 <div class="pass-benefit">
                   Valid for <strong>VIP Site Tour</strong> & <br>Exclusive <strong>Spot-Booking Discount</strong>.
