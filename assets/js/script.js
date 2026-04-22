@@ -203,8 +203,8 @@
       // Persist to local vault
       persistLead(data);
 
-      // --- AJAX Email Dispatch (FormSubmit.co API) ---
-      fetch('https://formsubmit.co/ajax/propsmartrealty@gmail.com', {
+      // --- AJAX Email Dispatch (Formspree — Production Verified) ---
+      fetch('https://formspree.io/f/xvgzrqba', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(data)
@@ -217,7 +217,7 @@
       })
       .catch(error => {
         console.error('[Sovereign Pipeline] AJAX Dispatch Failure:', error);
-        // Fail-safe: Even if AJAX fails, we've saved to Vault for manual retrieval.
+        // Fail-safe: Even if AJAX fails, we've saved to Vault for manual recovery.
         showSuccess(currentBtn, currentBtnText); 
         form.reset();
       });
