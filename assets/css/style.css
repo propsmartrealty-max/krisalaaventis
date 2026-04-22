@@ -919,3 +919,20 @@ button { cursor: pointer; font-family: inherit; }
 .cluster-card:hover { transform: translateY(-10px); border-color: var(--clr-gold); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
 .cluster-card h4 { color: var(--clr-gold); margin-bottom: 15px; font-size: 1.1rem; }
 .cluster-card p { font-size: 0.9rem; color: var(--clr-muted); line-height: 1.6; }
+
+/* --- Progress Intelligence --- */
+.progress-wrapper { margin-top: 2rem; }
+.progress-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 8px; }
+.progress-header strong { color: var(--clr-gold); font-size: 0.95rem; }
+.progress-header span { font-size: 0.8rem; color: var(--clr-muted); }
+.progress-track { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); height: 8px; border-radius: 100px; position: relative; overflow: hidden; }
+.progress-fill { background: linear-gradient(90deg, var(--clr-gold-dim), var(--clr-gold)); height: 100%; border-radius: 100px; width: 0; transition: width 2s cubic-bezier(0.4, 0, 0.2, 1); }
+.status-pill { display: inline-block; padding: 2px 10px; border-radius: 100px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; }
+.status-pill.completed { background: rgba(37, 211, 102, 0.1); color: #25D366; }
+.status-pill.active { background: rgba(202, 163, 80, 0.1); color: var(--clr-gold); }
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.7; }
+  100% { transform: scale(1); opacity: 1; }
+}
