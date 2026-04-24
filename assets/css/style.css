@@ -109,7 +109,7 @@ button { cursor: pointer; font-family: inherit; }
   border-radius: 100px;
   padding: 8px 8px 8px 28px;
   transition: all 0.4s var(--ease);
-  width: max-content; max-width: calc(100vw - 40px);
+  width: max-content; max-width: calc(100vw - 32px);
 }
 .pill-navbar.scrolled { background: rgba(6,8,13,0.95); border-color: rgba(255,255,255,0.12); }
 .nav-container { display: flex; align-items: center; gap: 36px; }
@@ -757,14 +757,18 @@ button { cursor: pointer; font-family: inherit; }
 @media (max-width: 880px) {
   .nav-links { display: none; }
   .nav-links.open {
-    display: flex; flex-direction: column; align-items: flex-start;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
     position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-    background: var(--clr-obsidian); padding: 100px 40px 40px;
-    z-index: 1400; gap: 20px;
+    background: rgba(8, 10, 16, 0.98);
+    backdrop-filter: blur(20px);
+    padding: 40px;
+    z-index: 5000; gap: 24px;
+    animation: fadeIn 0.3s ease forwards;
   }
-  .nav-links.open a { font-size: 1.2rem; }
-  .hamburger { display: flex; }
-  .pill-navbar { border-radius: 16px; width: calc(100vw - 40px); padding: 10px 16px 10px 24px; }
+  .nav-links.open a { font-size: 1.4rem; font-weight: 600; color: #fff; width: 100%; text-align: center; }
+  .hamburger { display: flex; z-index: 5100; position: relative; }
+  .pill-navbar { border-radius: 16px; width: calc(100vw - 32px); padding: 10px 12px 10px 20px; }
+  .nav-container { width: 100%; justify-content: space-between; }
   .overview-grid,
   .fp-layout,
   .enquiry-layout { grid-template-columns: 1fr; }
@@ -786,8 +790,8 @@ button { cursor: pointer; font-family: inherit; }
 }
 @media (max-width: 640px) {
   .hero h1 { font-size: 2.4rem; }
-  .hero-actions { flex-direction: column; }
-  .btn-primary, .btn-secondary { width: 100%; text-align: center; }
+  .hero-actions, .map-actions, .oracle-nav { display: flex; flex-direction: column !important; gap: 12px !important; }
+  .btn-primary, .btn-secondary { width: 100% !important; text-align: center; margin: 0 !important; }
   .amenity-category-grid,
   .location-grid { grid-template-columns: 1fr; }
   .legacy-stats,
@@ -1001,6 +1005,18 @@ button { cursor: pointer; font-family: inherit; }
 .oracle-result { text-align: center; display: none; }
 .oracle-result h3 { color: var(--clr-gold); font-size: 2rem; margin-bottom: 1rem; }
 .oracle-result p { margin-bottom: 2rem; color: var(--clr-silver); }
+
+/* --- Krisala Project Hardening (Table & Oracle) --- */
+.table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 20px 0; border-radius: 12px; border: 1px solid var(--clr-glass-border); }
+.sge-table { width: 100%; border-collapse: collapse; min-width: 600px; background: rgba(255,255,255,0.02); }
+.sge-table th, .sge-table td { padding: 16px 20px; border-bottom: 1px solid var(--clr-glass-border); text-align: left; font-size: 0.9rem; }
+.sge-table th { color: var(--clr-gold); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.75rem; background: rgba(0,0,0,0.2); }
+
+@media (max-width: 640px) {
+  .oracle-container { padding: 24px; border-radius: 20px; overflow: visible; }
+  .oracle-result h3 { font-size: 1.5rem; }
+  .oracle-result { padding-bottom: 20px; }
+}
 
 /* --- Priority Pass Gold Shimmer --- */
 .priority-pass::after {

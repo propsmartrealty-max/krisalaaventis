@@ -3,17 +3,29 @@
   "trailingSlash": false,
   "redirects": [
     { "source": "/flats-near-hinjewadi.html", "destination": "/krisala-aventis-tathawade-flats-near-hinjewadi", "permanent": true },
+    { "source": "/krisala-aventis-tathawade-flats-near-hinjewadi.html", "destination": "/krisala-aventis-tathawade-flats-near-hinjewadi", "permanent": true },
     { "source": "/2-bhk-flats-tathawade.html", "destination": "/krisala-aventis-tathawade-2-bhk-flats", "permanent": true },
+    { "source": "/krisala-aventis-tathawade-2-bhk-flats.html", "destination": "/krisala-aventis-tathawade-2-bhk-flats", "permanent": true },
     { "source": "/3-bhk-luxury-apartments-tathawade.html", "destination": "/krisala-aventis-tathawade-3-bhk-luxury-apartments", "permanent": true },
+    { "source": "/krisala-aventis-tathawade-3-bhk-luxury-apartments.html", "destination": "/krisala-aventis-tathawade-3-bhk-luxury-apartments", "permanent": true },
     { "source": "/construction-update-krisala-aventis.html", "destination": "/krisala-aventis-tathawade-construction-status", "permanent": true },
-    { "source": "/tathawade-real-estate-investment-roi.html", "destination": "/tathawade-real-estate-investment-roi", "permanent": true },
-    { "source": "/lifestyle-amenities-shopping-tathawade.html", "destination": "/lifestyle-amenities-shopping-tathawade", "permanent": true },
-    { "source": "/educational-hubs-near-krisala-aventis.html", "destination": "/educational-hubs-near-krisala-aventis", "permanent": true },
-    { "source": "/krisala-legacy-pune-track-record-completed-projects.html", "destination": "/krisala-legacy-pune-track-record-completed-projects", "permanent": true },
-    { "source": "/aluform-technology-construction-quality-krisala-aventis.html", "destination": "/aluform-technology-construction-quality-krisala-aventis", "permanent": true },
-    { "source": "/public-transport-connectivity-tathawade-pune.html", "destination": "/public-transport-connectivity-tathawade-pune", "permanent": true },
-    { "source": "/tathawade-market-growth-calculator.html", "destination": "/tathawade-market-growth-calculator", "permanent": true },
-    { "source": "/tathawade-real-estate-glossary.html", "destination": "/tathawade-real-estate-glossary", "permanent": true }
+    { "source": "/krisala-aventis-tathawade-construction-status.html", "destination": "/krisala-aventis-tathawade-construction-status", "permanent": true },
+    { "source": "/tathawade-real-estate-investment-roi.html", "destination": "/krisala-aventis-tathawade-investment-roi", "permanent": true },
+    { "source": "/tathawade-real-estate-investment-roi", "destination": "/krisala-aventis-tathawade-investment-roi", "permanent": true },
+    { "source": "/lifestyle-amenities-shopping-tathawade.html", "destination": "/krisala-aventis-tathawade-amenities-lifestyle", "permanent": true },
+    { "source": "/lifestyle-amenities-shopping-tathawade", "destination": "/krisala-aventis-tathawade-amenities-lifestyle", "permanent": true },
+    { "source": "/educational-hubs-near-krisala-aventis.html", "destination": "/krisala-aventis-tathawade-educational-hubs", "permanent": true },
+    { "source": "/educational-hubs-near-krisala-aventis", "destination": "/krisala-aventis-tathawade-educational-hubs", "permanent": true },
+    { "source": "/krisala-legacy-pune-track-record-completed-projects.html", "destination": "/krisala-aventis-tathawade-developer-legacy", "permanent": true },
+    { "source": "/krisala-legacy-pune-track-record-completed-projects", "destination": "/krisala-aventis-tathawade-developer-legacy", "permanent": true },
+    { "source": "/aluform-technology-construction-quality-krisala-aventis.html", "destination": "/krisala-aventis-tathawade-aluform-technology", "permanent": true },
+    { "source": "/aluform-technology-construction-quality-krisala-aventis", "destination": "/krisala-aventis-tathawade-aluform-technology", "permanent": true },
+    { "source": "/public-transport-connectivity-tathawade-pune.html", "destination": "/krisala-aventis-tathawade-public-transport", "permanent": true },
+    { "source": "/public-transport-connectivity-tathawade-pune", "destination": "/krisala-aventis-tathawade-public-transport", "permanent": true },
+    { "source": "/tathawade-market-growth-calculator.html", "destination": "/krisala-aventis-tathawade-market-growth-calculator", "permanent": true },
+    { "source": "/tathawade-market-growth-calculator", "destination": "/krisala-aventis-tathawade-market-growth-calculator", "permanent": true },
+    { "source": "/tathawade-real-estate-glossary.html", "destination": "/krisala-aventis-tathawade-real-estate-glossary", "permanent": true },
+    { "source": "/tathawade-real-estate-glossary", "destination": "/krisala-aventis-tathawade-real-estate-glossary", "permanent": true }
   ],
   "headers": [
     {
@@ -24,6 +36,7 @@
         { "key": "X-Content-Type-Options", "value": "nosniff" },
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
         { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" },
+        { "key": "Strict-Transport-Security", "value": "max-age=31536000; includeSubDomains; preload" },
         { "key": "Content-Security-Policy", "value": "default-src 'self' https: 'unsafe-inline' 'unsafe-eval'; img-src 'self' data: https:; frame-src https://www.googletagmanager.com https://maharera.mahaonline.gov.in;" }
       ]
     }

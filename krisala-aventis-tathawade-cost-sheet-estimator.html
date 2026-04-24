@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detailed Cost Sheet Estimator | Krisala Aventis Tathawade Pricing</title>
+  <meta name="description" content="Generate a tentative cost sheet for Krisala Aventis. Calculate all-inclusive pricing including agreement value, stamp duty, registration, and GST for 2 & 3 BHK.">
+  <meta name="keywords" content="krisala aventis cost sheet, price calculator tathawade, all inclusive property price pune, krisala aventis unit pricing">
+  <link rel="canonical" href="https://krisalaventis.in/krisala-aventis-tathawade-cost-sheet-estimator">
+  <meta property="og:site_name" content="Krisala Aventis Tathawade">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Detailed Cost Sheet Estimator">
+  <meta property="og:description" content="Generate a tentative cost sheet for Krisala Aventis. Calculate all-inclusive pricing including agreement value, stamp duty, registration, and GST for 2 & 3 BHK.">
+  <meta property="og:url" content="https://krisalaventis.in/krisala-aventis-tathawade-cost-sheet-estimator">
+  <meta property="og:image" content="https://krisalaventis.in/assets/images/hero.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Detailed Cost Sheet Estimator">
+  <meta name="twitter:description" content="Generate a tentative cost sheet for Krisala Aventis. Calculate all-inclusive pricing including agreement value, stamp duty, registration, and GST for 2 & 3 BHK.">
+  <meta name="twitter:image" content="https://krisalaventis.in/assets/images/hero.png">
+
+  
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://krisalaventis.in/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Krisala Aventis Tathawade",
+        "item": "https://krisalaventis.in/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Detailed Cost Sheet Estimator",
+        "item": "https://krisalaventis.in/krisala-aventis-tathawade-cost-sheet-estimator"
+      }
+    ]
+  }
+  </script>
+
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://krisalaventis.in">
+  <meta name="theme-color" content="#050608">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body>
+  <nav class="pill-navbar" id="mainNav">
+    <div class="nav-container">
+      <a href="/" class="logo">KRISALA <span>AVENTIS</span></a>
+      <div class="nav-links"><a href="/">Home</a><a href="#calculator" class="cta-pill">Start Estimation</a></div>
+    </div>
+  </nav>
+
+  <section class="hero silo-hero">
+    <div class="hero-bg">
+      <img src="assets/images/hero.png" width="1024" height="555" alt="Krisala Aventis Pricing — Professional Cost Sheet Estimation Tool" fetchpriority="high">
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">📊 Financial Transparency</div>
+      <h1>Sovereign <span class="gold">Price Estimator.</span></h1>
+      <p class="hero-desc">Calculate your total investment including government taxes and mandatory charges. No hidden costs. 100% transparency.</p>
+    </div>
+  </section>
+
+  <section id="calculator" class="section">
+    <div class="container center">
+      <div class="glass-form-container" style="max-width: 800px; margin: 0 auto; text-align: left;">
+        <h3>Select <span class="gold">Your Configuration</span></h3>
+        <p style="margin-bottom: 24px;">Choose a unit type to see the tentative all-inclusive cost breakdown.</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px;">
+          <div class="portfolio-card" style="cursor: pointer; border: 1px solid var(--clr-gold);" onclick="selectUnit(8500000, '2.25 BHK Elite')">
+            <h4>2.25 BHK Elite</h4>
+            <p>Agreement Value: ~₹85L</p>
+          </div>
+          <div class="portfolio-card" style="cursor: pointer;" onclick="selectUnit(12500000, '3.25 BHK Grand')">
+            <h4>3.25 BHK Grand</h4>
+            <p>Agreement Value: ~₹1.25Cr</p>
+          </div>
+        </div>
+
+        <div id="costResult" style="display: none; background: rgba(202,163,80,0.1); padding: 30px; border-radius: 12px; margin-top: 20px;">
+          <h4 id="unitName" style="color: var(--clr-gold); margin-bottom: 20px;">Unit Details</h4>
+          <div style="display: grid; gap: 10px; font-size: 0.95rem;">
+            <div style="display: flex; justify-content: space-between;"><span>Agreement Value</span> <span id="valAV">₹0</span></div>
+            <div style="display: flex; justify-content: space-between;"><span>Stamp Duty (7%)</span> <span id="valSD">₹0</span></div>
+            <div style="display: flex; justify-content: space-between;"><span>Registration</span> <span>₹30,000</span></div>
+            <div style="display: flex; justify-content: space-between;"><span>GST (5%)</span> <span id="valGST">₹0</span></div>
+            <hr style="border: 0.5px solid rgba(255,255,255,0.1); margin: 15px 0;">
+            <div style="display: flex; justify-content: space-between; font-weight: 700; color: var(--clr-gold); font-size: 1.2rem;"><span>Total All-Inclusive</span> <span id="valTotal">₹0</span></div>
+          </div>
+          <button class="btn-primary" style="width: 100%; margin-top: 30px;" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Download Official Cost Sheet PDF →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section enquiry-section">
+    <div class="container center">
+      <div class="glass-form-container" style="max-width: 600px; margin: 0 auto;">
+        <h3>Lock in Pre-Launch Price</h3>
+        <p>Submit your details to receive the official floor-wise inventory and cost sheet on WhatsApp.</p>
+        <form id="sovereign-form" class="sovereign-form-logic">
+          <input type="checkbox" name="contact_me" style="display:none !important" tabindex="-1" autocomplete="off">
+          <div class="form-group"><input type="text" name="name" placeholder="Full Name" required></div>
+          <div class="form-group"><input type="tel" name="phone" placeholder="WhatsApp Number" required></div>
+          <button type="submit" class="submit-btn">Send Me Official Cost Sheet →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  
+  <!-- ======== PROJECT EXPLORER (Internal Link Velocity) ======== -->
+  <section class="section related-silos" style="border-top: 1px solid var(--clr-glass-border); background: rgba(255,255,255,0.01);">
+    <div class="container">
+      <div class="section-tag">Project Explorer</div>
+      <h3>Deep Dive <span class="gold">Intelligence.</span></h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
+        <a href="/krisala-aventis-tathawade-real-estate-glossary" style="background: rgba(202,163,80,0.05); padding: 15px; border-radius: 8px; border: 1px solid rgba(202,163,80,0.2); text-decoration: none; color: #fff; font-size: 0.9rem; transition: 0.3s;">Krisala Aventis Tathawade Real Estate Glossary & PCMC Property Terms →</a>
+        <a href="/krisala-aventis-tathawade-vastu-compliance" style="background: rgba(202,163,80,0.05); padding: 15px; border-radius: 8px; border: 1px solid rgba(202,163,80,0.2); text-decoration: none; color: #fff; font-size: 0.9rem; transition: 0.3s;">Krisala Aventis Vastu Compliant Flats in Tathawade →</a>
+        <a href="/krisala-aventis-tathawade-educational-hubs" style="background: rgba(202,163,80,0.05); padding: 15px; border-radius: 8px; border: 1px solid rgba(202,163,80,0.2); text-decoration: none; color: #fff; font-size: 0.9rem; transition: 0.3s;">Krisala Aventis Top Schools & Colleges Near Tathawade →</a>
+        <a href="/krisala-aventis-tathawade-near-phoenix-mall-wakad" style="background: rgba(202,163,80,0.05); padding: 15px; border-radius: 8px; border: 1px solid rgba(202,163,80,0.2); text-decoration: none; color: #fff; font-size: 0.9rem; transition: 0.3s;">Krisala Aventis Flats near Phoenix Mall Wakad →</a>
+        <a href="/krisala-aventis-tathawade-nri-investment" style="background: rgba(202,163,80,0.05); padding: 15px; border-radius: 8px; border: 1px solid rgba(202,163,80,0.2); text-decoration: none; color: #fff; font-size: 0.9rem; transition: 0.3s;">Krisala Aventis NRI Property Investment in Pune →</a>
+      </div>
+    </div>
+  </section>
+<footer class="footer">
+    <div class="container center">
+      <p>© 2026 Krisala Legacy | <a href="/">Back to Home</a></p>
+    </div>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+  <script>
+    function selectUnit(av, name) {
+      document.getElementById('costResult').style.display = 'block';
+      document.getElementById('unitName').innerText = name;
+      
+      const sd = av * 0.07;
+      const gst = av * 0.05;
+      const total = av + sd + 30000 + gst;
+      
+      document.getElementById('valAV').innerText = '₹ ' + av.toLocaleString('en-IN');
+      document.getElementById('valSD').innerText = '₹ ' + Math.round(sd).toLocaleString('en-IN');
+      document.getElementById('valGST').innerText = '₹ ' + Math.round(gst).toLocaleString('en-IN');
+      document.getElementById('valTotal').innerText = '₹ ' + Math.round(total).toLocaleString('en-IN');
+      
+      // Highlight selection
+      document.querySelectorAll('.portfolio-card').forEach(c => c.style.borderColor = 'rgba(255,255,255,0.1)');
+      event.currentTarget.style.borderColor = 'var(--clr-gold)';
+    }
+  </script>
+</body>
+</html>

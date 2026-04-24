@@ -7,6 +7,7 @@
   "background_color": "#050608",
   "theme_color": "#caa350",
   "orientation": "portrait",
+  "categories": ["lifestyle", "real estate", "productivity"],
   "icons": [
     {
       "src": "/favicon.png",

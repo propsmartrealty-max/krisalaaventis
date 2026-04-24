@@ -1,7 +1,7 @@
 import os
-import re
 
 silos = [
+    "index.html",
     "krisala-aventis-tathawade-2-bhk-flats.html",
     "krisala-aventis-tathawade-3-bhk-luxury-apartments.html",
     "krisala-aventis-tathawade-flats-near-hinjewadi.html",
@@ -14,95 +14,58 @@ silos = [
     "aluform-technology-construction-quality-krisala-aventis.html",
     "public-transport-connectivity-tathawade-pune.html",
     "tathawade-real-estate-glossary.html",
-    "tathawade-market-growth-calculator.html"
+    "tathawade-market-growth-calculator.html",
+    "nri-investment-krisala-aventis-tathawade.html",
+    "krisala-aventis-tathawade-price-list.html",
+    "krisala-aventis-tathawade-brochure-download.html",
+    "krisala-aventis-vs-competitors-tathawade.html",
+    "vastu-compliance-krisala-aventis.html",
+    "home-loan-emi-calculator-krisala-aventis.html"
 ]
 
 base_dir = "/Users/vikasyewle/krisalaaventis"
 
-def inject_schema(filename):
+# Footer link block to inject/update
+new_footer_links = """
+          <div class="footer-links">
+            <a href="/krisala-aventis-tathawade-2-bhk-flats">2 BHK Flats</a>
+            <a href="/krisala-aventis-tathawade-3-bhk-luxury-apartments">3 BHK Flats</a>
+            <a href="/krisala-aventis-tathawade-price-list">Price List</a>
+            <a href="/krisala-aventis-tathawade-brochure-download">Brochure Download</a>
+            <a href="/krisala-aventis-tathawade-construction-status">Construction Status</a>
+            <a href="/tathawade-real-estate-investment-roi">ROI Analysis</a>
+            <a href="/lifestyle-amenities-shopping-tathawade">Amenities</a>
+            <a href="/educational-hubs-near-krisala-aventis">Education Hubs</a>
+            <a href="/tathawade-connectivity-it-hubs">Connectivity</a>
+            <a href="/krisala-legacy-pune-track-record-completed-projects">Legacy</a>
+            <a href="/aluform-technology-construction-quality-krisala-aventis">Technology</a>
+            <a href="/public-transport-connectivity-tathawade-pune">Public Transport</a>
+            <a href="/tathawade-real-estate-glossary">Glossary</a>
+            <a href="/tathawade-market-growth-calculator">Growth Calculator</a>
+            <a href="/nri-investment-krisala-aventis-tathawade">NRI Investment</a>
+            <a href="/krisala-aventis-vs-competitors-tathawade">Competitor Comparison</a>
+            <a href="/vastu-compliance-krisala-aventis">Vastu Compliance</a>
+            <a href="/home-loan-emi-calculator-krisala-aventis">EMI Calculator</a>
+          </div>
+"""
+
+def update_footer(filename):
     path = os.path.join(base_dir, filename)
-    if not os.path.exists(path):
-        return
+    if not os.path.exists(path): return
 
     with open(path, 'r') as f:
         content = f.read()
 
-    # Avoid duplicate injection
-    if 'type": "Article"' in content:
-        return
-
-    title_match = re.search(r'<title>(.*?)</title>', content)
-    desc_match = re.search(r'<meta name="description" content="(.*?)">', content)
-    
-    title = title_match.group(1) if title_match else "Krisala Aventis Tathawade"
-    desc = desc_match.group(1) if desc_match else ""
-
-    schema = f"""
-  <!-- JSON-LD SEO HARDENING -->
-  <script type="application/ld+json">
-  {{
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "{title}",
-    "description": "{desc}",
-    "image": "https://krisalaventis.in/assets/images/hero.png",
-    "author": {{
-      "@type": "Organization",
-      "name": "Krisala Legacy"
-    }},
-    "publisher": {{
-      "@type": "Organization",
-      "name": "Krisala Legacy",
-      "logo": {{
-        "@type": "ImageObject",
-        "url": "https://krisalaventis.in/favicon.png"
-      }}
-    }},
-    "datePublished": "2026-04-21",
-    "dateModified": "2026-04-22"
-  }}
-  </script>
-  <script type="application/ld+json">
-  {{
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {{
-        "@type": "Question",
-        "name": "What is the primary advantage of {title}?",
-        "acceptedAnswer": {{
-          "@type": "Answer",
-          "text": "{desc}"
-        }}
-      }},
-      {{
-        "@type": "Question",
-        "name": "Is Krisala Aventis near Hinjewadi?",
-        "acceptedAnswer": {{
-          "@type": "Answer",
-          "text": "Yes, Krisala Aventis is strategically located in Tathawade, just 10 minutes from Hinjewadi IT Park Phase 1."
-        }}
-      }}
-    ]
-  }}
-  </script>
-"""
-    # Inject before </head>
-    new_content = content.replace('</head>', schema + '</head>')
-    
-    # Also inject Keyword Cluster in footer if not present
-    if 'keyword-cluster' not in content:
-        cluster = """
-        <div class="keyword-cluster" style="margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1rem; font-size: 0.75rem; color: rgba(255,255,255,0.4);">
-          <strong>Trending:</strong> 
-          <span>Krisala Aventis Tathawade</span> • <span>2 BHK in Tathawade</span> • <span>3 BHK near Hinjewadi</span> • <span>Krisala Legacy Projects</span>
-        </div>
-"""
-        new_content = new_content.replace('</footer>', cluster + '</footer>')
-
-    with open(path, 'w') as f:
-        f.write(new_content)
-    print(f"Hardened: {filename}")
+    # Look for the footer-links div and replace it
+    import re
+    pattern = r'<div class="footer-links">.*?</div>'
+    if re.search(pattern, content, re.DOTALL):
+        content = re.sub(pattern, new_footer_links.strip(), content, flags=re.DOTALL)
+        with open(path, 'w') as f:
+            f.write(content)
+        print(f"Updated footer in {filename}")
+    else:
+        print(f"Could not find footer links in {filename}")
 
 for silo in silos:
-    inject_schema(silo)
+    update_footer(silo)

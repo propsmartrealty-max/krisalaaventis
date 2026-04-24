@@ -16,49 +16,52 @@ silos = [
     "public-transport-connectivity-tathawade-pune.html",
     "tathawade-real-estate-glossary.html",
     "tathawade-market-growth-calculator.html",
-    "nri-investment-krisala-aventis-tathawade.html"
+    "nri-investment-krisala-aventis-tathawade.html",
+    "krisala-aventis-tathawade-price-list.html",
+    "krisala-aventis-tathawade-brochure-download.html",
+    "krisala-aventis-vs-competitors-tathawade.html",
+    "vastu-compliance-krisala-aventis.html",
+    "home-loan-emi-calculator-krisala-aventis.html"
 ]
 
 base_dir = "/Users/vikasyewle/krisalaaventis"
 
-def normalize_and_breadcrumb(filename):
+# Mapping anchors to clean silo URLs
+mapping = {
+    '/#overview': '/krisala-aventis-tathawade-flats-near-hinjewadi',
+    '#overview': '/krisala-aventis-tathawade-flats-near-hinjewadi',
+    '/#floorplans': '/krisala-aventis-tathawade-2-bhk-flats',
+    '#floorplans': '/krisala-aventis-tathawade-2-bhk-flats',
+    '/#amenities': '/lifestyle-amenities-shopping-tathawade',
+    '#amenities': '/lifestyle-amenities-shopping-tathawade',
+    '/#location': '/tathawade-connectivity-it-hubs',
+    '#location': '/tathawade-connectivity-it-hubs',
+    '/#blog': '/tathawade-real-estate-glossary',
+    '#blog': '/tathawade-real-estate-glossary',
+    '/#legacy': '/krisala-legacy-pune-track-record-completed-projects',
+    '#legacy': '/krisala-legacy-pune-track-record-completed-projects',
+    '/#masterlayout': '/krisala-aventis-tathawade-construction-status',
+    '#masterlayout': '/krisala-aventis-tathawade-construction-status'
+}
+
+def normalize_links(filename):
     path = os.path.join(base_dir, filename)
     if not os.path.exists(path): return
 
     with open(path, 'r') as f:
         content = f.read()
 
-    # 1. Normalize URLs: Remove .html and index.html
-    content = content.replace('href="index.html"', 'href="/"')
-    content = content.replace('href="/index#', 'href="/#')
-    content = content.replace('href="index#', 'href="/#')
+    # 1. Replace anchor links with clean URLs
+    for anchor, clean in mapping.items():
+        # Replace href="#anchor" with href="/clean"
+        content = content.replace(f'href="{anchor}"', f'href="{clean}"')
     
-    for silo in silos:
-        clean_name = silo.replace('.html', '')
-        content = content.replace(f'href="{silo}"', f'href="/{clean_name}"')
-        content = content.replace(f'href="/{silo}"', f'href="/{clean_name}"')
-
-    # 2. Inject Breadcrumbs (below navbar)
-    if filename != "index.html" and 'class="breadcrumbs"' not in content:
-        page_title = filename.replace('krisala-aventis-tathawade-', '').replace('.html', '').replace('-', ' ').title()
-        breadcrumb_html = f"""
-  <!-- BREADCRUMBS -->
-  <div class="breadcrumb-container" style="background: rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.05); padding: 10px 0;">
-    <div class="container">
-      <nav class="breadcrumbs" aria-label="Breadcrumb" style="font-size: 0.75rem; color: var(--clr-muted);">
-        <a href="/" style="color: var(--clr-gold); text-decoration: none;">Home</a> 
-        <span style="margin: 0 8px;">/</span> 
-        <span style="color: #fff;">{page_title}</span>
-      </nav>
-    </div>
-  </div>
-"""
-        # Find end of nav
-        content = re.sub(r'(</nav>)', r'\1' + breadcrumb_html, content, count=1)
+    # 2. Final sweep for any .html links (just in case)
+    content = re.sub(r'href="/([^"]+)\.html"', r'href="/\1"', content)
 
     with open(path, 'w') as f:
         f.write(content)
-    print(f"URL Normalized & Breadcrumbed: {filename}")
+    print(f"Normalized navigation in {filename}")
 
 for silo in silos:
-    normalize_and_breadcrumb(silo)
+    normalize_links(silo)

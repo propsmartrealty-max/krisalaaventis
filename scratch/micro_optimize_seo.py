@@ -15,56 +15,58 @@ silos = [
     "aluform-technology-construction-quality-krisala-aventis.html",
     "public-transport-connectivity-tathawade-pune.html",
     "tathawade-real-estate-glossary.html",
-    "tathawade-market-growth-calculator.html"
+    "tathawade-market-growth-calculator.html",
+    "nri-investment-krisala-aventis-tathawade.html"
 ]
 
 base_dir = "/Users/vikasyewle/krisalaaventis"
 
-def micro_optimize(filename):
+# Dimensions for CLS optimization
+dimensions = {
+    "hero.png": (1024, 555),
+    "floorplan-2bhk.png": (1024, 566),
+    "floorplan-3bhk.png": (1024, 558),
+    "interior.png": (1024, 1024),
+    "location-infographic.png": (1024, 1024),
+    "amenities-infographic.png": (1024, 1024),
+    "logo.png": (1024, 1024),
+    "master-layout.png": (1024, 561)
+}
+
+def optimize_file(filename):
     path = os.path.join(base_dir, filename)
     if not os.path.exists(path): return
 
     with open(path, 'r') as f:
         content = f.read()
 
-    # 1. LCP Priority Hinting for Hero Images
-    # Find the first image or hero background and add priority hints
-    content = re.sub(r'(<img[^>]+src="[^"]*hero[^"]*"[^>]*>)', r'\1 fetchpriority="high"', content)
-    
-    # 2. Lazy Loading for non-hero images
-    # Add loading="lazy" to images that don't have it and aren't hero images
-    def add_lazy(match):
-        img_tag = match.group(0)
-        if 'loading=' not in img_tag and 'hero' not in img_tag:
-            return img_tag.replace('>', ' loading="lazy">')
-        return img_tag
+    # 1. Fix fetchpriority syntax error: "> fetchpriority="high"" -> " fetchpriority="high">"
+    content = content.replace('> fetchpriority="high"', ' fetchpriority="high">')
 
-    content = re.sub(r'<img[^>]+>', add_lazy, content)
+    # 2. Add dimensions to images that don't have them
+    for img_name, dims in dimensions.items():
+        w, h = dims
+        # Look for the img tag with the src
+        pattern = rf'(<img[^>]*src="[^"]*{img_name}"[^>]*)(>)'
+        
+        def add_dims(match):
+            tag_content = match.group(1)
+            if 'width=' not in tag_content:
+                tag_content += f' width="{w}" height="{h}"'
+            return tag_content + match.group(2)
 
-    # 3. Voice Search Hardening (Speakable Schema)
-    voice_schema = """
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Krisala Aventis Official Portal",
-    "speakable": {
-      "@type": "SpeakableSpecification",
-      "xpath": [
-        "/html/head/title",
-        "/html/head/meta[@name='description']/@content"
-      ]
-    },
-    "url": "https://krisalaventis.in/"
-  }
-  </script>
-"""
-    if 'SpeakableSpecification' not in content:
-        content = content.replace('</head>', voice_schema + '</head>')
+        content = re.sub(pattern, add_dims, content)
+
+    # 3. Fix internal links: ensure they are clean (no .html) in footer matrix
+    # pattern: href="/krisala-aventis-tathawade-2-bhk-flats.html" -> "/krisala-aventis-tathawade-2-bhk-flats"
+    content = re.sub(r'href="/([^"]+)\.html"', r'href="/\1"', content)
+
+    # 4. Remove duplicate Organization schema if present (only for silos where it might have been copied)
+    # (Optional: this is safer to do manually or with more precise regex)
 
     with open(path, 'w') as f:
         f.write(content)
-    print(f"Micro-Optimized: {filename}")
+    print(f"Optimized: {filename}")
 
 for silo in silos:
-    micro_optimize(silo)
+    optimize_file(silo)
